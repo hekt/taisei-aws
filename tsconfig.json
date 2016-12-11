@@ -1,0 +1,16 @@
+{
+  "version": "2.1.4",
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true
+    "strictNullChecks": true
+  },
+  "exclude": [
+    "dist",
+    "node_modules"
+  ],
+  "files": [
+    "src/domains/Pokemon/Pokemon.ts",
+    "tests/domains/Pokemon/Pokemon.test.ts"
+  ]
+}
