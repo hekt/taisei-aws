@@ -20,11 +20,12 @@
         "tests/**/*.test.ts"
     ],
     "files": [
-        "src/app.ts",
+        "src/cli.ts",
         "src/entity/Ability.ts",
         "src/entity/Pokemon.ts",
         "src/entity/Type.ts",
         "src/entity/TypeEfficacy.ts",
+        "src/update.ts",
         "tests/entity/Type.test.ts"
     ]
 }

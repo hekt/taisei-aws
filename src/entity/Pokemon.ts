@@ -31,6 +31,12 @@ export class Pokemon {
   public name: string;
 
   /**
+   * Can evolve to next form
+   */
+  @Column()
+  public canEvolve: boolean;
+
+  /**
    * Primary type
    */
   @OneToOne(type => Type)
@@ -62,6 +68,7 @@ export class Pokemon {
     id: number,
     ndex: number,
     name: string,
+    canEvolve: boolean,
     type1: Type,
     type2: Type | null,
     abilities: Ability[]
@@ -69,8 +76,24 @@ export class Pokemon {
     this.id = id;
     this.ndex = ndex;
     this.name = name;
+    this.canEvolve = canEvolve;
     this.type1 = type1;
     this.type2 = type2;
     this.abilities = abilities;
+  }
+
+  /**
+   * getEfficacyBy
+   */
+  public getTypeEfficacyBy(attacker: Type): number {
+    let rate: number = 1;
+
+    rate = rate * this.type1.getEfficacyBy(attacker);
+
+    if (null !== this.type2) {
+      rate = rate * this.type2.getEfficacyBy(attacker);
+    }
+
+    return rate;
   }
 }
