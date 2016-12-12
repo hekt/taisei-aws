@@ -2,23 +2,24 @@
   "name": "taisei-aws",
   "version": "1.0.0",
   "description": "Pokemon taisei kensaku Web Api for AWS Lambda",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsconfig -u && tsc",
+    "pretest": "npm run build",
+    "test": "istanbul cover _mocha -- dist/tests/**/*.test.js"
   },
   "author": "hektorg@gmail.com",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
     "istanbul": "^0.4.5",
-    "karma": "^1.3.0",
-    "karma-chrome-launcher": "^2.0.0",
-    "karma-coverage": "^1.1.1",
-    "karma-mocha": "^1.3.0",
-    "karma-typescript-preprocessor": "^0.3.0",
     "mocha": "^3.2.0",
-    "power-assert": "^1.4.2",
     "remap-istanbul": "^0.7.0",
+    "tsconfig-cli": "^2.1.0",
     "typescript": "^2.1.4"
+  },
+  "dependencies": {
+    "lodash": "^4.17.2",
+    "sqlite3": "^3.1.8",
+    "typeorm": "0.0.4"
   }
 }
