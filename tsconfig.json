@@ -9,7 +9,8 @@
         "rootDir": "./",
         "outDir": "dist",
         "emitDecoratorMetadata": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "noEmitOnError": true
     },
     "exclude": [
         "/Users/kaz/Works/taisei-aws/dist",
@@ -21,11 +22,12 @@
     ],
     "files": [
         "src/cli.ts",
-        "src/entity/Ability.ts",
-        "src/entity/Pokemon.ts",
-        "src/entity/Type.ts",
-        "src/entity/TypeEfficacy.ts",
+        "src/domains/Ability/Ability.ts",
+        "src/domains/Pokemon/Pokemon.ts",
+        "src/domains/Type/Type.ts",
+        "src/domains/Type/TypeEfficacy.ts",
         "src/update.ts",
-        "tests/entity/Type.test.ts"
+        "tests/domains/Pokemon/Pokemon.test.ts",
+        "tests/domains/Type/Type.test.ts"
     ]
 }

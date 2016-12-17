@@ -7,11 +7,11 @@ import {
   JoinTable,
   JoinColumn
 } from 'typeorm';
-import { Ability } from './Ability';
-import { Type } from './Type';
+import Ability from '../Ability/Ability';
+import Type from '../Type/Type';
 
 @Table()
-export class Pokemon {
+export default class Pokemon {
   /**
    * Primary key for RDBMS
    */
@@ -65,15 +65,13 @@ export class Pokemon {
    * constructor
    */
   constructor(
-    id: number,
     ndex: number,
     name: string,
     canEvolve: boolean,
     type1: Type,
-    type2: Type | null,
-    abilities: Ability[]
+    type2: Type | null = null,
+    abilities: Ability[] = []
   ) {
-    this.id = id;
     this.ndex = ndex;
     this.name = name;
     this.canEvolve = canEvolve;

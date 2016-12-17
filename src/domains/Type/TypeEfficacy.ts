@@ -1,9 +1,9 @@
 import 'reflect-metadata';
 import { Table, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
-import { Type } from './Type';
+import Type from '../Type/Type';
 
 @Table()
-export class TypeEfficacy {
+export default class TypeEfficacy {
   /**
    * Primary key for RDBMS
    */

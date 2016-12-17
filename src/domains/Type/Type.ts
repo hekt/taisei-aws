@@ -1,8 +1,8 @@
 import { Table, Column, PrimaryColumn, OneToMany } from 'typeorm';
-import { TypeEfficacy } from './TypeEfficacy';
+import TypeEfficacy from '../Type/TypeEfficacy';
 
 @Table()
-export class Type {
+export default class Type {
   /**
    * Type name
    */
@@ -40,6 +40,13 @@ export class Type {
     this.logicalName = logicalName;
     this.efficaciesByAttacker = efficaciesByAttacker;
     this.efficaciesByAttackee = efficaciesByAttackee;
+  }
+
+  /**
+   * is
+   */
+  public is(name: string): boolean {
+    return this.name === name;
   }
 
   /**

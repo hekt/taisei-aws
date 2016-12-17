@@ -1,19 +1,20 @@
+import 'reflect-metadata'
 import { Table, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
-import { Pokemon } from './Pokemon';
+import Pokemon from '../Pokemon/Pokemon';
 
 @Table()
-export class Ability {
+export default class Ability {
   /**
    * Primary key for RDBMS
    */
   @PrimaryGeneratedColumn()
-  id: string;
+  public id: string;
 
   /**
    * Ability name
    */
   @Column()
-  name: string;
+  public name: string;
 
   /**
    * Pokemons that have this ability
@@ -23,5 +24,5 @@ export class Ability {
     cascadeUpdate: true,
     cascadeRemove: true
   })
-  pokemons: Pokemon[] = [];
+  public pokemons: Pokemon[] = [];
 }

@@ -3,26 +3,27 @@
   "version": "1.0.0",
   "description": "Pokemon taisei kensaku Web Api for AWS Lambda",
   "scripts": {
-    "build": "tsconfig -u && tsc",
-    "pretest": "npm run build",
+    "build": "gulp clean && gulp build",
     "test": "istanbul cover _mocha -- dist/tests/**/*.test.js",
-    "watch": "gulp watch"
+    "watch": "gulp clean && gulp watch"
   },
   "author": "hektorg@gmail.com",
   "license": "MIT",
   "devDependencies": {
     "chai": "^3.5.0",
+    "del": "^2.2.2",
     "gulp": "^3.9.1",
-    "gulp-shell": "^0.5.2",
+    "gulp-istanbul": "^1.1.1",
+    "gulp-mocha": "^3.0.1",
     "gulp-typescript": "^3.1.3",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "tsconfig-cli": "^2.1.0",
+    "typemoq": "^1.0.3",
     "typescript": "^2.1.4"
   },
   "dependencies": {
-    "lodash": "^4.17.2",
     "sqlite3": "^3.1.8",
-    "typeorm": "0.0.4"
+    "typeorm": "0.0.5"
   }
 }

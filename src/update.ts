@@ -1,12 +1,11 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import { Pokemon } from './entity/Pokemon';
-import { Ability } from './entity/Ability';
-import { Type } from './entity/Type';
-import { TypeEfficacy } from './entity/TypeEfficacy';
+import Pokemon from './domains/Pokemon/Pokemon';
+import Ability from './domains/Ability/Ability';
+import Type from './domains/Type/Type';
+import TypeEfficacy from './domains/Type/TypeEfficacy';
 
 let p: Pokemon = new Pokemon(
-  1,
   2,
   'pikachu',
   true,
