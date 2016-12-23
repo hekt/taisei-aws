@@ -1,28 +1,63 @@
-import 'reflect-metadata'
-import { Table, Column, PrimaryGeneratedColumn, ManyToMany } from 'typeorm';
-import Pokemon from '../Pokemon/Pokemon';
+import Type from '../Type/Type';
+import TypeValue from '../Type/TypeValue';
+import {
+  CorrectorInterface,
+  PassCorrector,
+  SimpleCorrector,
+  MultipleCorrector,
+  MoreOrEqualCorrector,
+  LessCorrector
+} from '../Efficacy/Corrector';
 
-@Table()
 export default class Ability {
   /**
-   * Primary key for RDBMS
+   * constructor
    */
-  @PrimaryGeneratedColumn()
-  public id: string;
+  public constructor(
+    public readonly name: string,
+    public readonly logicalName: string
+  ) {}
 
   /**
-   * Ability name
+   * corrector
+   *
+   * @todo: ストリングリテラルにする？
    */
-  @Column()
-  public name: string;
-
-  /**
-   * Pokemons that have this ability
-   */
-  @ManyToMany(type => Pokemon, pokemon => pokemon.abilities, {
-    cascadeInsert: true,
-    cascadeUpdate: true,
-    cascadeRemove: true
-  })
-  public pokemons: Pokemon[] = [];
+  public corrector(): CorrectorInterface {
+    switch (this.name) {
+    case 'heatproof':
+      return new SimpleCorrector(Type.of(TypeValue.FIRE), 0.5);
+    case 'flash_fire':
+      return new SimpleCorrector(Type.of(TypeValue.FIRE), 0.0);
+    case 'sap_sipper':
+      return new SimpleCorrector(Type.of(TypeValue.GRASS), 0.0);
+    case 'water_absorb':
+    case 'storm_drain':
+      return new SimpleCorrector(Type.of(TypeValue.WATER), 0.0);
+    case 'bolt_absorb':
+    case 'lightning_lod':
+    case 'motor_drive':
+      return new SimpleCorrector(Type.of(TypeValue.ELECTRIC), 0.0);
+    case 'levitate':
+      return new SimpleCorrector(Type.of(TypeValue.GROUND), 0.0);
+    case 'thick_fat':
+      return new MultipleCorrector([
+        new SimpleCorrector(Type.of(TypeValue.FIRE), 0.5),
+        new SimpleCorrector(Type.of(TypeValue.ICE), 0.5),
+      ]);
+    case 'dry_skin':
+      return new MultipleCorrector([
+        new SimpleCorrector(Type.of(TypeValue.FIRE), 1.25),
+        new SimpleCorrector(Type.of(TypeValue.WATER), 0.0),
+      ]);
+    case 'solid_rock':
+    case 'filter':
+    case 'prism_armor':
+      return new MoreOrEqualCorrector(2.0, 0.75);
+    case 'wonder_guard':
+      return new LessCorrector(2.0, 0.0);
+    default:
+      return new PassCorrector();
+    }
+  }
 }

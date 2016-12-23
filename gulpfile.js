@@ -49,9 +49,19 @@ gulp.task('test', ['pre-test'], function(done) {
     }));
 });
 
+gulp.task('simple-test', ['build'], function(done) {
+  if (buildFailed) {
+    gutil.log('simple-test: skip');
+    return done();
+  }
+
+  return gulp.src(['dist/tests/**/*.js'])
+    .pipe(mocha());
+});
+
 gulp.task('watch', ['build'], function() {
   gulp.watch([
     'src/**/*.ts',
     'tests/**/*.ts',
-  ], ['test']);
+  ], ['simple-test']);
 });

@@ -1,83 +1,58 @@
-import { Table, Column, PrimaryColumn, OneToMany } from 'typeorm';
-import TypeEfficacy from '../Type/TypeEfficacy';
+import TypeValue from './TypeValue';
 
-@Table()
 export default class Type {
-  /**
-   * Type name
-   */
-  @PrimaryColumn()
-  public name: string;
-
-  /**
-   * Japanese logical name
-   */
-  @Column()
-  public logicalName: string;
-
-  /**
-   * type efficacies by attacker
-   */
-  @OneToMany(type => TypeEfficacy, type_efficacy => type_efficacy.attacker)
-  public efficaciesByAttacker: TypeEfficacy[] = [];
-
-  /**
-   * type efficacies by attackee
-   */
-  @OneToMany(type => TypeEfficacy, type_efficacy => type_efficacy.attackee)
-  public efficaciesByAttackee: TypeEfficacy[] = [];
-
   /**
    * constructor
    */
   public constructor(
-    name: string,
-    logicalName: string,
-    efficaciesByAttacker: TypeEfficacy[] = [],
-    efficaciesByAttackee: TypeEfficacy[] = []
-  ) {
-    this.name = name;
-    this.logicalName = logicalName;
-    this.efficaciesByAttacker = efficaciesByAttacker;
-    this.efficaciesByAttackee = efficaciesByAttackee;
+    private value: TypeValue
+  ) {}
+
+  /**
+   * of
+   */
+  public static of(value: TypeValue): Type {
+    return new Type(value);
   }
 
   /**
    * is
    */
-  public is(name: string): boolean {
-    return this.name === name;
+  public is(other: Type): boolean {
+    return this.value === other.value;
   }
 
   /**
-   * getEfficacyTo
+   * toString
    */
-  public getEfficacyTo(attackee: Type): number {
-    let ret: TypeEfficacy | undefined = this.efficaciesByAttacker
-      .find((efficacy: TypeEfficacy) => {
-        return efficacy.attackee === attackee;
-      });
-
-    if (ret === undefined) {
-      throw new Error('undefined type');
-    }
-
-    return ret.rate;
+  public toString(): string {
+    return TypeValue[this.value].toLowerCase();
   }
 
   /**
-   * getEfficacyBy
+   * toLogicalName
    */
-  public getEfficacyBy(attacker: Type): number {
-    let ret: TypeEfficacy | undefined = this.efficaciesByAttackee
-      .find((efficacy: TypeEfficacy) => {
-        return efficacy.attacker == attacker;
-      });
-
-    if (ret === undefined) {
-      throw new Error('undefined type');
+  public toLogicalName(): string {
+    switch (this.value) {
+    case TypeValue.NONE: return 'なし';
+    case TypeValue.NORMAL: return 'ノーマル';
+    case TypeValue.FIGHT: return 'かくとう';
+    case TypeValue.FLYING: return 'ひこう';
+    case TypeValue.POISON: return 'どく';
+    case TypeValue.GROUND: return 'じめん'
+    case TypeValue.ROCK: return 'いわ';
+    case TypeValue.BUG: return 'むし';
+    case TypeValue.GHOST: return 'ゴースト';
+    case TypeValue.STEEL: return 'はがね';
+    case TypeValue.FIRE: return 'ほのお';
+    case TypeValue.WATER: return 'みず';
+    case TypeValue.GRASS: return 'くさ';
+    case TypeValue.ELECTRIC: return 'でんき';
+    case TypeValue.PHYCHIC: return 'エスパー';
+    case TypeValue.ICE: return 'こおり';
+    case TypeValue.DRAGON: return 'ドラゴン';
+    case TypeValue.DARK: return 'あく';
+    case TypeValue.FAIRY: return 'フェアリー';
     }
-
-    return ret.rate;
   }
 }

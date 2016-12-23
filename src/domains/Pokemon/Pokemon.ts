@@ -1,76 +1,18 @@
-import {
-  Table,
-  Column,
-  PrimaryGeneratedColumn,
-  OneToOne,
-  ManyToMany,
-  JoinTable,
-  JoinColumn
-} from 'typeorm';
+import Type from "../Type/Type";
 import Ability from '../Ability/Ability';
-import Type from '../Type/Type';
 
-@Table()
 export default class Pokemon {
-  /**
-   * Primary key for RDBMS
-   */
-  @PrimaryGeneratedColumn()
-  public id: number;
-
-  /**
-   * National pokedex number
-   */
-  @Column('int')
-  public ndex: number;
-
-  /**
-   * Pokemon name
-   */
-  @Column()
-  public name: string;
-
-  /**
-   * Can evolve to next form
-   */
-  @Column()
-  public canEvolve: boolean;
-
-  /**
-   * Primary type
-   */
-  @OneToOne(type => Type)
-  @JoinColumn()
-  public type1: Type
-
-  /**
-   * Secondary type
-   */
-  @OneToOne(type => Type)
-  @JoinColumn()
-  public type2: Type | null
-
-  /**
-   * Special abilities
-   */
-  @ManyToMany(type => Ability, ability => ability.pokemons, {
-    cascadeInsert: true,
-    cascadeUpdate: true,
-    cascadeRemove: true
-  })
-  @JoinTable()
-  public abilities: Ability[] = [];
-
   /**
    * constructor
    */
   constructor(
-    ndex: number,
-    name: string,
-    canEvolve: boolean,
-    type1: Type,
-    type2: Type | null = null,
-    abilities: Ability[] = []
+    public readonly ndex: number,
+    public readonly name: string,
+    public readonly formName: string | null,
+    public readonly canEvolve: boolean,
+    public readonly type1: Type,
+    public readonly type2: Type,
+    public readonly abilities: Ability[] = []
   ) {
     this.ndex = ndex;
     this.name = name;
@@ -81,17 +23,12 @@ export default class Pokemon {
   }
 
   /**
-   * getEfficacyBy
+   * fullName
    */
-  public getTypeEfficacyBy(attacker: Type): number {
-    let rate: number = 1;
-
-    rate = rate * this.type1.getEfficacyBy(attacker);
-
-    if (null !== this.type2) {
-      rate = rate * this.type2.getEfficacyBy(attacker);
+  public fullName(): string {
+    if (this.formName === null) {
+      return this.name;
     }
-
-    return rate;
+    return `${this.name} (${this.formName})`;
   }
 }

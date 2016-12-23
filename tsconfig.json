@@ -1,33 +1,25 @@
 {
-    "version": "2.1.4",
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "sourceMap": true,
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "rootDir": "./",
-        "outDir": "dist",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "noEmitOnError": true
-    },
-    "exclude": [
-        "/Users/kaz/Works/taisei-aws/dist",
-        "/Users/kaz/Works/taisei-aws/node_modules"
-    ],
-    "filesGlob": [
-        "src/**/*.ts",
-        "tests/**/*.test.ts"
-    ],
-    "files": [
-        "src/cli.ts",
-        "src/domains/Ability/Ability.ts",
-        "src/domains/Pokemon/Pokemon.ts",
-        "src/domains/Type/Type.ts",
-        "src/domains/Type/TypeEfficacy.ts",
-        "src/update.ts",
-        "tests/domains/Pokemon/Pokemon.test.ts",
-        "tests/domains/Type/Type.test.ts"
-    ]
+  "version": "2.1.4",
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "rootDir": "./",
+    "outDir": "dist",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noEmitOnError": true
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }
