@@ -1,7 +1,8 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import PokemonEntity from './domains/Pokemon/Pokemon';
-import TypeEfficacyEntity from './domains/Type/TypeEfficacy';
+import PokemonEntity from './domains/Pokemon/PokemonEntity';
+import AbilityEntity from './domains/Ability/AbilityEntity';
+import TypeEfficacyEntity from './domains/Type/TypeEfficacyEntity';
 
 createConnection({
   driver: {
@@ -10,6 +11,7 @@ createConnection({
   },
   entities: [
     PokemonEntity,
+    AbilityEntity,
     TypeEfficacyEntity,
   ],
   autoSchemaSync: true,

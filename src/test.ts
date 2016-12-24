@@ -1,12 +1,12 @@
-// abstract class VO<T> {
-//   constructor(public value: T) {}
-// }
+let hoge: string;
 
-// enum FooValue { FOOFOO, FOOBAR }
-// class Foo extends VO<FooValue> {};
+console.log('aaa');
 
-// let foo = new Foo(FooValue.FOOBAR);
+class Klass {
+  public prop: string;
+}
 
-// enum BarValue { BAR }
+let k = new Klass;
 
-// let bar = new Foo(BarValue.BAR);
+console.log('klass');
+console.log(k.prop);

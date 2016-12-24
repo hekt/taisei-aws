@@ -8,11 +8,4 @@ describe('Ability', () => {
       .to.be.an.instanceof(Ability);
   });
 
-  it('should return corrector', () => {
-    let ability = new Ability('wonder_guard', 'ふしぎなまもり');
-
-    expect(ability.corrector())
-      .to.be.respondTo('applyRate');
-  });
-
 });

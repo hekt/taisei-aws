@@ -5,7 +5,7 @@ export default class Type {
    * constructor
    */
   public constructor(
-    private value: TypeValue
+    public readonly value: TypeValue
   ) {}
 
   /**
@@ -14,6 +14,28 @@ export default class Type {
   public static of(value: TypeValue): Type {
     return new Type(value);
   }
+
+  /**
+   * of*
+   */
+  public static ofNormal(): Type { return new Type(TypeValue.NORMAL); }
+  public static ofFight(): Type { return new Type(TypeValue.FIGHT); }
+  public static ofFlying(): Type { return new Type(TypeValue.FLYING); }
+  public static ofPoison(): Type { return new Type(TypeValue.POISON); }
+  public static ofGround(): Type { return new Type(TypeValue.GROUND); }
+  public static ofRock(): Type { return new Type(TypeValue.ROCK); }
+  public static ofBug(): Type { return new Type(TypeValue.BUG); }
+  public static ofGhost(): Type { return new Type(TypeValue.GHOST); }
+  public static ofSteel(): Type { return new Type(TypeValue.STEEL); }
+  public static ofFire(): Type { return new Type(TypeValue.FIRE); }
+  public static ofWater(): Type { return new Type(TypeValue.WATER); }
+  public static ofGrass(): Type { return new Type(TypeValue.GRASS); }
+  public static ofElectric(): Type { return new Type(TypeValue.ELECTRIC); }
+  public static ofPhychic(): Type { return new Type(TypeValue.PHYCHIC); }
+  public static ofIce(): Type { return new Type(TypeValue.ICE); }
+  public static ofDragon(): Type { return new Type(TypeValue.DRAGON); }
+  public static ofDark(): Type { return new Type(TypeValue.DARK); }
+  public static ofFairy(): Type { return new Type(TypeValue.FAIRY); }
 
   /**
    * is

@@ -34,11 +34,9 @@ export class MultipleCorrector implements CorrectorInterface {
   ) {}
 
   public applyRate(type: Type, rate: number): number {
-    for (let corrector of this.correctors) {
-      rate = corrector.applyRate(type, rate);
-    }
-
-    return rate;
+    return this.correctors.reduce((acc, corrector) => {
+      return corrector.applyRate(type, acc);
+    }, rate);
   }
 }
 

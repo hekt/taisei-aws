@@ -16,16 +16,4 @@ describe('TypeEfficacy', () => {
       .to.be.an.instanceof(TypeEfficacy);
   });
 
-  it('should return corrector', () => {
-    let efficacy = new TypeEfficacy(
-      Type.of(TypeValue.ROCK),
-      Type.of(TypeValue.FLYING),
-      2.0
-    );
-    let corrector = efficacy.asCorrector();
-
-    expect(corrector)
-      .to.be.respondTo('applyRate');
-  });
-
 });
