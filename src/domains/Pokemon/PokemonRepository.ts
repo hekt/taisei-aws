@@ -1,4 +1,3 @@
-import { Connection } from 'typeorm';
 import Repository from '../../infrastructure/Repository';
 import Pokemon from './Pokemon';
 import PokemonEntity from './PokemonEntity';
@@ -21,10 +20,10 @@ class PokemonRepository extends Repository<Pokemon> {
       = await this.getRepository().findOneById(id);
 
     if (entity === undefined) {
-      return Promise.reject('not found');
+      throw new Error('not found');
     }
 
-    return Promise.resolve(this.inflate(entity));
+    return this.inflate(entity);
   }
 }
 

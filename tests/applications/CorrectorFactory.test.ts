@@ -5,7 +5,6 @@ import { toPromise } from '../TestUtils';
 import Ability from '../../src/domains/Ability/Ability';
 import Pokemon from '../../src/domains/Pokemon/Pokemon';
 import Type from '../../src/domains/Type/Type';
-import TypeValue from '../../src/domains/Type/TypeValue';
 import TypeEfficacy from '../../src/domains/Type/TypeEfficacy';
 import TypeEfficacyRepository from '../../src/domains/Type/TypeEfficacyRepository';
 import {
@@ -46,13 +45,13 @@ describe('CorrectorFactory', () => {
       .setup(x => x.collectByAttackeeTypes(TypeMoq.It.isAny()))
       .returns(() => toPromise([
         new TypeEfficacy(
-          Type.of(TypeValue.FIRE),
-          Type.of(TypeValue.FIRE),
+          Type.ofFire(),
+          Type.ofFire(),
           0.5
         ),
         new TypeEfficacy(
-          Type.of(TypeValue.WATER),
-          Type.of(TypeValue.FIRE),
+          Type.ofWater(),
+          Type.ofFire(),
           2.0
         ),
       ]));
@@ -63,13 +62,13 @@ describe('CorrectorFactory', () => {
       'Hitokage',
       null,
       true,
-      Type.of(TypeValue.FIRE),
-      Type.of(TypeValue.NONE),
+      Type.ofFire(),
+      Type.ofNone(),
       [ability]
     );
     let corrector = await getFactory().createByPokemon(pokemon, ability);
 
-    expect(corrector.applyRate(Type.of(TypeValue.FIRE), 1.0))
+    expect(corrector.applyRate(Type.ofFire(), 1.0))
       .to.equal(0.25);
   });
 

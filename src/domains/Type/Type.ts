@@ -18,6 +18,7 @@ export default class Type {
   /**
    * of*
    */
+  public static ofNone(): Type { return new Type(TypeValue.NONE); }
   public static ofNormal(): Type { return new Type(TypeValue.NORMAL); }
   public static ofFight(): Type { return new Type(TypeValue.FIGHT); }
   public static ofFlying(): Type { return new Type(TypeValue.FLYING); }

@@ -17,7 +17,8 @@ class DenormalizeService {
     let results = [];
 
     // 特性なしの場合
-    corrector = await this.correctorFactory.createByPokemon(pokemon, null);
+    corrector = await this.correctorFactory
+      .createByPokemon(pokemon, null);
     results.push(this.buildData(corrector, pokemon, null));
 
     // 特性ありの場合

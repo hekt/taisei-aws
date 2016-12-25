@@ -1,4 +1,3 @@
-import { Connection } from 'typeorm';
 import Repository from '../../infrastructure/Repository';
 import Ability from './Ability';
 import AbilityEntity from './AbilityEntity';

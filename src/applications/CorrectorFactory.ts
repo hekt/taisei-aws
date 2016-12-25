@@ -1,7 +1,6 @@
 import Ability from '../domains/Ability/Ability';
 import Pokemon from '../domains/Pokemon/Pokemon';
 import Type from '../domains/Type/Type';
-import TypeValue from '../domains/Type/TypeValue';
 import TypeEfficacy from '../domains/Type/TypeEfficacy';
 import TypeEfficacyRepository from '../domains/Type/TypeEfficacyRepository';
 import {
@@ -55,29 +54,29 @@ class CorrectorFactory {
   ): CorrectorInterface {
     switch (ability.name) {
     case 'heatproof':
-      return new SimpleCorrector(Type.of(TypeValue.FIRE), 0.5);
+      return new SimpleCorrector(Type.ofFire(), 0.5);
     case 'flash_fire':
-      return new SimpleCorrector(Type.of(TypeValue.FIRE), 0.0);
+      return new SimpleCorrector(Type.ofFire(), 0.0);
     case 'sap_sipper':
-      return new SimpleCorrector(Type.of(TypeValue.GRASS), 0.0);
+      return new SimpleCorrector(Type.ofGrass(), 0.0);
     case 'water_absorb':
     case 'storm_drain':
-      return new SimpleCorrector(Type.of(TypeValue.WATER), 0.0);
+      return new SimpleCorrector(Type.ofWater(), 0.0);
     case 'bolt_absorb':
     case 'lightning_lod':
     case 'motor_drive':
-      return new SimpleCorrector(Type.of(TypeValue.ELECTRIC), 0.0);
+      return new SimpleCorrector(Type.ofElectric(), 0.0);
     case 'levitate':
-      return new SimpleCorrector(Type.of(TypeValue.GROUND), 0.0);
+      return new SimpleCorrector(Type.ofGround(), 0.0);
     case 'thick_fat':
       return new MultipleCorrector([
-        new SimpleCorrector(Type.of(TypeValue.FIRE), 0.5),
-        new SimpleCorrector(Type.of(TypeValue.ICE), 0.5),
+        new SimpleCorrector(Type.ofFire(), 0.5),
+        new SimpleCorrector(Type.ofIce(), 0.5),
       ]);
     case 'dry_skin':
       return new MultipleCorrector([
-        new SimpleCorrector(Type.of(TypeValue.FIRE), 1.25),
-        new SimpleCorrector(Type.of(TypeValue.WATER), 0.0),
+        new SimpleCorrector(Type.ofFire(), 1.25),
+        new SimpleCorrector(Type.ofWater(), 0.0),
       ]);
     case 'solid_rock':
     case 'filter':

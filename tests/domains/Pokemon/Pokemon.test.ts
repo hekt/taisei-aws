@@ -1,13 +1,12 @@
 import { expect } from 'chai';
 import Pokemon from '../../../src/domains/Pokemon/Pokemon';
 import Type from '../../../src/domains/Type/Type';
-import TypeValue from '../../../src/domains/Type/TypeValue';
 
 describe('Pokemon', () => {
 
   it('should be able to instantiate', () => {
-    let type1 = Type.of(TypeValue.NORMAL);
-    let type2 = Type.of(TypeValue.NONE);
+    let type1 = Type.ofNormal();
+    let type2 = Type.ofNone();
     let pokemon = new Pokemon(1, 'M', null, true, type1, type2);
 
     expect(pokemon)
@@ -15,8 +14,8 @@ describe('Pokemon', () => {
   });
 
   it('should have properties', () => {
-    let type1 = Type.of(TypeValue.ICE);
-    let type2 = Type.of(TypeValue.ROCK);
+    let type1 = Type.ofIce();
+    let type2 = Type.ofRock();
     let pokemon = new Pokemon(
       10, 'けつばん', 'Alora Form', true , type1, type2
     );
@@ -41,8 +40,8 @@ describe('Pokemon', () => {
       'ロトム',
       '氷',
       false,
-      Type.of(TypeValue.ICE),
-      Type.of(TypeValue.NONE)
+      Type.ofIce(),
+      Type.ofNone()
     );
 
     expect(pokemon.fullName())

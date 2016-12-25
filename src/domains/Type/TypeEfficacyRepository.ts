@@ -1,4 +1,3 @@
-import { Connection } from 'typeorm';
 import Repository from '../../infrastructure/Repository';
 import Type from './Type';
 import TypeEfficacy from './TypeEfficacy';
