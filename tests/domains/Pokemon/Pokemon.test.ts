@@ -7,7 +7,7 @@ describe('Pokemon', () => {
   it('should be able to instantiate', () => {
     let type1 = Type.ofNormal();
     let type2 = Type.ofNone();
-    let pokemon = new Pokemon(1, 'M', null, true, type1, type2);
+    let pokemon = new Pokemon(null, 1, 'M', null, true, type1, type2);
 
     expect(pokemon)
       .to.be.an.instanceof(Pokemon);
@@ -17,7 +17,7 @@ describe('Pokemon', () => {
     let type1 = Type.ofIce();
     let type2 = Type.ofRock();
     let pokemon = new Pokemon(
-      10, 'けつばん', 'Alora Form', true , type1, type2
+      null, 10, 'けつばん', 'Alora Form', true , type1, type2
     );
 
     expect(pokemon)
@@ -36,6 +36,7 @@ describe('Pokemon', () => {
 
   it('should return full name', () => {
     let pokemon = new Pokemon(
+      null,
       479,
       'ロトム',
       '氷',

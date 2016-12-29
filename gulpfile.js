@@ -11,7 +11,10 @@ var onError = function(err) {
   buildFailed = true;
 };
 
-gulp.task('clean', del.bind(null, ['dist']));
+gulp.task('clean', del.bind(null, [
+    'dist/src',
+    'dist/tests',
+]));
 
 gulp.task('build', function() {
   buildFailed = false;

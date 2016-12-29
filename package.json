@@ -13,6 +13,7 @@
     "@types/chai": "^3.4.34",
     "@types/es6-promise": "0.0.32",
     "@types/mocha": "^2.2.34",
+    "@types/node": "^6.0.54",
     "chai": "^3.5.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
@@ -26,6 +27,7 @@
     "typescript": "^2.1.4"
   },
   "dependencies": {
+    "csv-parse": "^1.1.7",
     "es6-promise": "^4.0.5",
     "reflect-metadata": "^0.1.8",
     "sqlite3": "^3.1.8",

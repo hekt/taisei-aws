@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Type from '../../../src/domains/Type/Type';
-import TypeEfficacy from '../../../src/domains/Type/TypeEfficacy';
+import TypeEfficacy from '../../../src/domains/Efficacy/TypeEfficacy';
 
 describe('TypeEfficacy', () => {
 

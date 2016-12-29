@@ -1,8 +1,8 @@
-import Ability from '../domains/Ability/Ability';
-import Pokemon from '../domains/Pokemon/Pokemon';
-import Type from '../domains/Type/Type';
-import TypeEfficacy from '../domains/Type/TypeEfficacy';
-import TypeEfficacyRepository from '../domains/Type/TypeEfficacyRepository';
+import Ability from '../Ability/Ability';
+import Pokemon from '../Pokemon/Pokemon';
+import Type from '../Type/Type';
+import TypeEfficacy from './TypeEfficacy';
+import TypeEfficacyRepository from './TypeEfficacyRepository';
 import {
   CorrectorInterface,
   PassCorrector,
@@ -10,19 +10,19 @@ import {
   MultipleCorrector,
   MoreOrEqualCorrector,
   LessCorrector
-} from '../domains/Efficacy/Corrector';
+} from './Corrector';
 
 class CorrectorFactory {
   public constructor(
     private readonly typeEfficacyRepository: TypeEfficacyRepository
   ) {}
 
-  public async createByPokemon(
-    pokemon: Pokemon,
+  public async create(
+    types: Type[],
     ability: Ability | null
   ): Promise<CorrectorInterface> {
     let typeEfficacies = await this.typeEfficacyRepository
-      .collectByAttackeeTypes(pokemon.types());
+      .collectByAttackeeTypes(types);
 
     let correctors: CorrectorInterface[] = [];
 

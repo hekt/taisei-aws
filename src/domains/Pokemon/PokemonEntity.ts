@@ -22,7 +22,7 @@ class PokemonEntity extends Entity<Pokemon> {
   @Column()
   public name: string;
 
-  @Column()
+  @Column('string', {nullable: true})
   public formName: string | null;
 
   @Column()
@@ -40,10 +40,11 @@ class PokemonEntity extends Entity<Pokemon> {
     cascadeRemove: true
   })
   @JoinTable()
-  public abilities: AbilityEntity[];
+  public abilities: AbilityEntity[] = [];
 
   public inflate(): Pokemon {
     return new Pokemon(
+      this.id,
       this.ndex,
       this.name,
       this.formName,
@@ -57,6 +58,9 @@ class PokemonEntity extends Entity<Pokemon> {
   }
 
   public setValuesFromModel(model: Pokemon): PokemonEntity {
+    if (model.id !== null) {
+      this.id = model.id;
+    }
     this.ndex = model.ndex;
     this.name = model.name;
     this.formName = model.formName;

@@ -2,6 +2,7 @@ import Type from '../Type/Type';
 
 class DenormalizedData {
   public constructor(
+    public readonly pokemonId: number,
     public readonly ndex: number,
     public readonly name: string,
     public readonly formName: string | null,

@@ -13,7 +13,7 @@ enum TypeValue {
   WATER,
   GRASS,
   ELECTRIC,
-  PHYCHIC,
+  PSYCHIC,
   ICE,
   DRAGON,
   DARK,

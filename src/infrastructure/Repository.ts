@@ -21,6 +21,13 @@ abstract class Repository<T> {
 
     return entities.map(this.inflate);
   }
+
+  public async transaction(
+    callback: (repository: Repository<T>, base: BaseRepository<Entity<T>>) => Promise<any> | any
+  ): Promise<any> {
+    return this.getRepository()
+      .transaction(callback.bind(null, this));
+  }
 }
 
 export default Repository;

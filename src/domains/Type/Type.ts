@@ -32,11 +32,24 @@ export default class Type {
   public static ofWater(): Type { return new Type(TypeValue.WATER); }
   public static ofGrass(): Type { return new Type(TypeValue.GRASS); }
   public static ofElectric(): Type { return new Type(TypeValue.ELECTRIC); }
-  public static ofPhychic(): Type { return new Type(TypeValue.PHYCHIC); }
+  public static ofPsychic(): Type { return new Type(TypeValue.PSYCHIC); }
   public static ofIce(): Type { return new Type(TypeValue.ICE); }
   public static ofDragon(): Type { return new Type(TypeValue.DRAGON); }
   public static ofDark(): Type { return new Type(TypeValue.DARK); }
   public static ofFairy(): Type { return new Type(TypeValue.FAIRY); }
+
+  /**
+   * fromString
+   */
+  public static fromString(str: string): Type {
+    let value: TypeValue | undefined = (<any>TypeValue)[str.toUpperCase()];
+
+    if (undefined === value) {
+      throw new Error('undefined type name: ' + str);
+    }
+
+    return new Type(value);
+  }
 
   /**
    * is
@@ -71,7 +84,7 @@ export default class Type {
     case TypeValue.WATER: return 'みず';
     case TypeValue.GRASS: return 'くさ';
     case TypeValue.ELECTRIC: return 'でんき';
-    case TypeValue.PHYCHIC: return 'エスパー';
+    case TypeValue.PSYCHIC: return 'エスパー';
     case TypeValue.ICE: return 'こおり';
     case TypeValue.DRAGON: return 'ドラゴン';
     case TypeValue.DARK: return 'あく';

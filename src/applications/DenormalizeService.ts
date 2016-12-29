@@ -3,7 +3,7 @@ import DenormalizedData from '../domains/Denormalized/DenormalizedData';
 import Type from '../domains/Type/Type';
 import Pokemon from '../domains/Pokemon/Pokemon';
 import { CorrectorInterface } from '../domains/Efficacy/Corrector';
-import CorrectorFactory from './CorrectorFactory';
+import CorrectorFactory from '../domains/Efficacy/CorrectorFactory';
 
 class DenormalizeService {
   public constructor(
@@ -14,17 +14,15 @@ class DenormalizeService {
     pokemon: Pokemon
   ): Promise<DenormalizedData[]> {
     let corrector;
-    let results = [];
+    let results: DenormalizedData[] = [];
 
     // 特性なしの場合
-    corrector = await this.correctorFactory
-      .createByPokemon(pokemon, null);
+    corrector = await this.correctorFactory.create(pokemon.types(), null);
     results.push(this.buildData(corrector, pokemon, null));
 
     // 特性ありの場合
     for (let ability of pokemon.abilities) {
-      corrector = await this.correctorFactory
-        .createByPokemon(pokemon, ability);
+      corrector = await this.correctorFactory.create(pokemon.types(), ability);
       results.push(this.buildData(corrector, pokemon, ability));
     }
 
@@ -37,6 +35,7 @@ class DenormalizeService {
     ability: Ability | null
   ): DenormalizedData {
     return new DenormalizedData(
+      pokemon.id!,
       pokemon.ndex,
       pokemon.name,
       pokemon.formName,
@@ -57,7 +56,7 @@ class DenormalizeService {
       corrector.applyRate(Type.ofWater(), 1.0),
       corrector.applyRate(Type.ofGrass(), 1.0),
       corrector.applyRate(Type.ofElectric(), 1.0),
-      corrector.applyRate(Type.ofPhychic(), 1.0),
+      corrector.applyRate(Type.ofPsychic(), 1.0),
       corrector.applyRate(Type.ofIce(), 1.0),
       corrector.applyRate(Type.ofDragon(), 1.0),
       corrector.applyRate(Type.ofDark(), 1.0),

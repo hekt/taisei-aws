@@ -1,4 +1,4 @@
-import Type from './Type';
+import Type from '../Type/Type';
 
 export default class TypeEfficacy {
   public constructor(

@@ -25,6 +25,15 @@ class PokemonRepository extends Repository<Pokemon> {
 
     return this.inflate(entity);
   }
+
+  public async allWithRelations(): Promise<Pokemon[]> {
+    let entities = await this.getRepository()
+      .createQueryBuilder('pokemon')
+      .leftJoinAndSelect('pokemon.abilities', 'abilities')
+      .getMany();
+
+    return entities.map(this.inflate);
+  }
 }
 
 export default PokemonRepository;

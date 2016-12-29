@@ -3,6 +3,7 @@ import Ability from '../Ability/Ability';
 
 export default class Pokemon {
   constructor(
+    public readonly id: number | null,
     public readonly ndex: number,
     public readonly name: string,
     public readonly formName: string | null,

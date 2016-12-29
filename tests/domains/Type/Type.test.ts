@@ -9,6 +9,13 @@ describe('Type', () => {
       .to.be.an.instanceof(Type);
     expect(Type.of(TypeValue.FIGHT))
       .to.be.an.instanceof(Type);
+    expect(Type.fromString('ground'))
+      .to.be.an.instanceof(Type);
+  });
+
+  it('should raise error when instantiate by undeined name', () => {
+    expect(() => Type.fromString('unknown'))
+      .to.throw(Error);
   });
 
   it('should verify equivalence', () => {

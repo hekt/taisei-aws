@@ -6,7 +6,6 @@ import {
   ManyToMany
 } from 'typeorm';
 import Entity from '../../infrastructure/Entity';
-import PokemonEntity from '../Pokemon/PokemonEntity';
 import Ability from './Ability';
 
 @Table('ability')

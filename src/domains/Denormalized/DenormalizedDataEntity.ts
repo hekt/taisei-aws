@@ -9,30 +9,33 @@ import TypeValue from '../Type/TypeValue';
 import Entity from '../../infrastructure/Entity';
 import DenormalizedData from './DenormalizedData';
 
-@Table()
+@Table('denormalized_data')
 class DenormalizedDataEntity implements Entity<DenormalizedData> {
   @PrimaryGeneratedColumn()
   public id: number;
 
   @Column('int')
+  public pokemonId;
+
+  @Column('int')
   public ndex: number;
 
-  @Column()
+  @Column('string')
   public name: string;
 
-  @Column()
+  @Column('string', {nullable: true})
   public formName: string | null;
 
-  @Column()
+  @Column('string', {nullable: true})
   public abilityName: string | null;
 
-  @Column()
+  @Column('int')
   public type1: TypeValue;
 
-  @Column()
+  @Column('int')
   public type2: TypeValue;
 
-  @Column()
+  @Column('boolean')
   public canEvolve: boolean;
 
   @Column('float')
@@ -91,6 +94,7 @@ class DenormalizedDataEntity implements Entity<DenormalizedData> {
   
   public inflate(): DenormalizedData {
     return new DenormalizedData(
+      this.pokemonId,
       this.ndex,
       this.name,
       this.formName,
@@ -120,6 +124,7 @@ class DenormalizedDataEntity implements Entity<DenormalizedData> {
   }
 
   public setValuesFromModel(model: DenormalizedData): DenormalizedDataEntity {
+    this.pokemonId = model.pokemonId;
     this.ndex = model.ndex;
     this.name = model.name;
     this.formName = model.formName;

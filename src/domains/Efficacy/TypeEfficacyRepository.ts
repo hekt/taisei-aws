@@ -1,5 +1,5 @@
 import Repository from '../../infrastructure/Repository';
-import Type from './Type';
+import Type from '../Type/Type';
 import TypeEfficacy from './TypeEfficacy';
 import TypeEfficacyEntity from './TypeEfficacyEntity';
 
@@ -23,7 +23,7 @@ class TypeEfficacyRepository extends Repository<TypeEfficacy> {
 
     let entities = await this.getRepository()
       .createQueryBuilder('type_efficacy')
-      .where('attackee in :types', {types: typeValues})
+      .where('attackee in (:types)', {types: typeValues})
       .getMany();
 
     return entities.map(this.inflate);

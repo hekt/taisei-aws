@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import PokemonEntity from './domains/Pokemon/PokemonEntity';
 import AbilityEntity from './domains/Ability/AbilityEntity';
-import TypeEfficacyEntity from './domains/Type/TypeEfficacyEntity';
+import TypeEfficacyEntity from './domains/Efficacy/TypeEfficacyEntity';
 
 createConnection({
   driver: {
