@@ -22,7 +22,7 @@ class AbilityEntity extends Entity<Ability> {
 
   public setValuesFromModel(model: Ability): AbilityEntity {
     this.name = model.name;
-    this.logicalName = model.name;
+    this.logicalName = model.logicalName;
 
     return this;
   }

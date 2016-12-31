@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { dataDatabasePath } from '../../config'
 import { Connection, createConnection } from 'typeorm';
 import Container from '../../infrastructure/Container';
 import ServiceProvider from '../../infrastructure/ServiceProvider';
@@ -17,19 +18,25 @@ export class DataConnectionProvider extends ServiceProvider<Connection> {
   public resolve(contaienr: Container): Connection {
     return this.connection;
   }
+
+  public cleanup(): void {
+    this.connection.close();
+  }
 }
 
-export async function getDataConnectionProvider(): Promise<DataConnectionProvider> {
+export async function getDataConnectionProvider(
+  autoSchemaSync: boolean = false
+): Promise<DataConnectionProvider> {
   let connection = await createConnection({
     name: 'data',
     driver: {
       type: 'sqlite',
-      storage: './resources/data.sqlite3',
+      storage: dataDatabasePath,
     },
     entities: [
       DenormalizedDataEntity,
     ],
-    autoSchemaSync: true,
+    autoSchemaSync: autoSchemaSync,
   });
 
   return new DataConnectionProvider(connection);

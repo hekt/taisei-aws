@@ -23,7 +23,7 @@ class DenormalizedData {
     public readonly water: number,
     public readonly grass: number,
     public readonly electric: number,
-    public readonly phychic: number,
+    public readonly psychic: number,
     public readonly ice: number,
     public readonly dragon: number,
     public readonly dark: number,
@@ -31,7 +31,7 @@ class DenormalizedData {
   ) {}
 
   public fullName(): string {
-    if (this.formName === null) {
+    if (!this.formName) {
       return this.name;
     }
     return `${this.name} (${this.formName})`;

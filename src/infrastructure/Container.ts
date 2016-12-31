@@ -20,6 +20,13 @@ export default class Container {
     return Container.instance();
   }
 
+  public cleanup(): void {
+    for (let k in this.providers) {
+      let provider = this.providers[k];
+      provider.cleanup();
+    }
+  }
+
   public addProvider(provider: ServiceProviderInterface): Container {
     this.providers[provider.getIdentifier()] = provider;
 

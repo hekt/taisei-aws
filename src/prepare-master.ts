@@ -10,14 +10,14 @@ import TypeEfficacyRepository from './domains/Efficacy/TypeEfficacyRepository';
 import PokemonCsvFormatter from './applications/PokemonCsvFormatter';
 import TypeEfficacyCsvFormatter from './applications/TypeEfficacyCsvFormatter';
 
-class App extends Application {
+class App extends Application<void, void> {
   protected async getConnectionProviders() {
     return [
-      await getMasterConnectionProvider(),
+      await getMasterConnectionProvider(true),
     ];
   }
 
-  protected async main(container: Container) {
+  protected async main(container: Container): Promise<void> {
     let efficacyPath = './resources/type_efficacy.csv';
     let pokemonPath = './resources/pokemon.csv';
 

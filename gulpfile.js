@@ -16,12 +16,15 @@ gulp.task('clean', del.bind(null, [
     'dist/tests',
 ]));
 
+gulp.task('bundle:lambda', function () {});
+
 gulp.task('build', function() {
   buildFailed = false;
   return gulp
     .src([
       './**/*.ts',
       '!./node_modules/**',
+      '!./bundle/**',
     ])
     .pipe(tsProject())
     .on('error', onError)

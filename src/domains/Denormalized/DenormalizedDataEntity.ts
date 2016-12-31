@@ -78,7 +78,7 @@ class DenormalizedDataEntity implements Entity<DenormalizedData> {
   public electric: number;
 
   @Column('float')
-  public phychic: number;
+  public psychic: number;
 
   @Column('float')
   public ice: number;
@@ -115,7 +115,7 @@ class DenormalizedDataEntity implements Entity<DenormalizedData> {
       this.water,
       this.grass,
       this.electric,
-      this.phychic,
+      this.psychic,
       this.ice,
       this.dragon,
       this.dark,
@@ -145,7 +145,7 @@ class DenormalizedDataEntity implements Entity<DenormalizedData> {
     this.water = model.water;
     this.grass = model.grass;
     this.electric = model.electric;
-    this.phychic = model.phychic;
+    this.psychic = model.psychic;
     this.ice = model.ice;
     this.dragon = model.dragon;
     this.dark = model.dark;

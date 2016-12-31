@@ -8,15 +8,15 @@ import PokemonRepository from './domains/Pokemon/PokemonRepository';
 import DenormalizedDataRepository from './domains/Denormalized/DenormalizedDataRepository';
 import DenormalizeService from './applications/DenormalizeService';
 
-class App extends Application {
+class App extends Application<void, void> {
   protected async getConnectionProviders() {
     return [
-      await getMasterConnectionProvider(),
-      await getDataConnectionProvider(),
+      await getMasterConnectionProvider(false),
+      await getDataConnectionProvider(true),
     ];
   }
 
-  protected async main(container: Container) {
+  protected async main(container: Container): Promise<void> {
     let pokemonRepository = container
       .get<PokemonRepository>('pokemonRepository');
     let pokemons = await pokemonRepository.allWithRelations();

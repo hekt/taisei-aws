@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import { masterDatabasePath } from '../../config'
 import { Connection, createConnection } from 'typeorm';
 import Container from '../../infrastructure/Container';
 import ServiceProvider from '../../infrastructure/ServiceProvider';
@@ -19,21 +20,27 @@ export class MasterConnectionProvider extends ServiceProvider<Connection> {
   public resolve(contaienr: Container): Connection {
     return this.connection;
   }
+
+  public cleanup(): void {
+    this.connection.close();
+  }
 }
 
-export async function getMasterConnectionProvider(): Promise<MasterConnectionProvider> {
+export async function getMasterConnectionProvider(
+  autoSchemaSync: boolean = false
+): Promise<MasterConnectionProvider> {
   let connection = await createConnection({
     name: 'master',
     driver: {
       type: 'sqlite',
-      storage: './resources/master.sqlite3',
+      storage: masterDatabasePath,
     },
     entities: [
       PokemonEntity,
       AbilityEntity,
       TypeEfficacyEntity,
     ],
-    autoSchemaSync: true,
+    autoSchemaSync: autoSchemaSync,
   });
 
   return new MasterConnectionProvider(connection);
