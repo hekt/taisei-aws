@@ -24,20 +24,26 @@ export class DataConnectionProvider extends ServiceProvider<Connection> {
   }
 }
 
+let provider: DataConnectionProvider;
+
 export async function getDataConnectionProvider(
   autoSchemaSync: boolean = false
 ): Promise<DataConnectionProvider> {
-  let connection = await createConnection({
-    name: 'data',
-    driver: {
-      type: 'sqlite',
-      storage: dataDatabasePath,
-    },
-    entities: [
-      DenormalizedDataEntity,
-    ],
-    autoSchemaSync: autoSchemaSync,
-  });
+  if (!provider) {
+    let connection = await createConnection({
+      name: 'data',
+      driver: {
+        type: 'sqlite',
+        storage: dataDatabasePath,
+      },
+      entities: [
+        DenormalizedDataEntity,
+      ],
+      autoSchemaSync: autoSchemaSync,
+    });
 
-  return new DataConnectionProvider(connection);
+    provider = new DataConnectionProvider(connection);
+  }
+
+  return provider;
 }

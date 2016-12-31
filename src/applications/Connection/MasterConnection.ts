@@ -26,22 +26,28 @@ export class MasterConnectionProvider extends ServiceProvider<Connection> {
   }
 }
 
+let provider: MasterConnectionProvider;
+
 export async function getMasterConnectionProvider(
   autoSchemaSync: boolean = false
 ): Promise<MasterConnectionProvider> {
-  let connection = await createConnection({
-    name: 'master',
-    driver: {
-      type: 'sqlite',
-      storage: masterDatabasePath,
-    },
-    entities: [
-      PokemonEntity,
-      AbilityEntity,
-      TypeEfficacyEntity,
-    ],
-    autoSchemaSync: autoSchemaSync,
-  });
+  if (!provider) {
+    let connection = await createConnection({
+      name: 'master',
+      driver: {
+        type: 'sqlite',
+        storage: masterDatabasePath,
+      },
+      entities: [
+        PokemonEntity,
+        AbilityEntity,
+        TypeEfficacyEntity,
+      ],
+      autoSchemaSync: autoSchemaSync,
+    });
 
-  return new MasterConnectionProvider(connection);
+    provider = new MasterConnectionProvider(connection);
+  }
+
+  return provider;
 }

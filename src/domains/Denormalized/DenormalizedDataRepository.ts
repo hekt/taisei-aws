@@ -30,7 +30,10 @@ class DenormalizedDataRepository extends Repository<DenormalizedData> {
       }
     }
 
-    let entities = await query.getMany();
+    let entities = await query
+      // .orderBy('ndex')
+      // .addOrderBy('formName')
+      .getMany();
 
     return entities.map(this.inflate);
   }
