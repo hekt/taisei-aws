@@ -1,18 +1,16 @@
 import Container from './infrastructure/Container';
 import { Where } from './infrastructure/Query';
 import Application from './applications/Application';
-import {
-  getDataConnectionProvider
-} from './applications/ContainerHelpers';
+import { getDataConnectionOptions } from './applications/Connection';
 import QueryConverter from './applications/QueryConverter';
 import ResponseFormatter from './applications/ResponseFormatter';
 import DenormalizedData from './domains/Denormalized/DenormalizedData';
 import DenormalizedDataRepository from './domains/Denormalized/DenormalizedDataRepository';
 
 class App extends Application<{[key: string]: string}, Object[]> {
-  protected async getConnectionProviders() {
+  protected connectionOptions() {
     return [
-      await getDataConnectionProvider(false),
+      getDataConnectionOptions(false),
     ];
   }
 
@@ -35,16 +33,7 @@ class App extends Application<{[key: string]: string}, Object[]> {
   }
 }
 
-// let app = new App();
-// app.run({
-//   'finalForm': 'true',
-//   'normal': 'eq,0.25',
-// }).then((data) => {
-//   console.log(data);
-//   console.log('success');
-// }).catch((err) => {
-//   console.error(err);
-// })
+let app;
 
 export function handler(event, context, callback) {
   let done = (err, res) => callback(null, {
@@ -56,10 +45,11 @@ export function handler(event, context, callback) {
     },
   });
 
-  let app = new App();
-  app.run(event['queryStringParameters']).then((data) => {
-    done(null, data);
-  }).catch((err) => {
-    done(err, null);
-  });
+  (app = app || new App())
+    .run(event['queryStringParameters'])
+    .then((data) => {
+      done(null, data);
+    }).catch((err) => {
+ done(err.stack, null);
+    });
 }

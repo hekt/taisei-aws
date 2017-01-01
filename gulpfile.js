@@ -104,7 +104,7 @@ gulp.task('build', function() {
     .src([
       './**/*.ts',
       '!./node_modules/**',
-      '!./bundle/**',
+      '!./dist/**',
     ])
     .pipe(tsProject())
     .on('error', onError)

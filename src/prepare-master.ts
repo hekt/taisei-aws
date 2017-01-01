@@ -2,18 +2,16 @@ import * as fs from 'fs';
 
 import Container from './infrastructure/Container';
 import Application from './applications/Application';
-import {
-  getMasterConnectionProvider
-} from './applications/ContainerHelpers';
+import { getMasterConnectionOptions } from './applications/Connection';
 import PokemonRepository from './domains/Pokemon/PokemonRepository';
 import TypeEfficacyRepository from './domains/Efficacy/TypeEfficacyRepository';
 import PokemonCsvFormatter from './applications/PokemonCsvFormatter';
 import TypeEfficacyCsvFormatter from './applications/TypeEfficacyCsvFormatter';
 
 class App extends Application<void, void> {
-  protected async getConnectionProviders() {
+  protected connectionOptions() {
     return [
-      await getMasterConnectionProvider(true),
+      getMasterConnectionOptions(true),
     ];
   }
 

@@ -42,6 +42,11 @@ export default class Container {
   }
 
   public get<T>(identifier: string): T {
-    return this.providers[identifier].provide<T>(this);
+    let provider = this.providers[identifier];
+    if (!provider) {
+      throw new Error('Container: unknown identifier');
+    }
+
+    return provider.provide<T>(this);
   }
 }

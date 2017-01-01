@@ -16,9 +16,6 @@ import {
   DenormalizeServiceProvider
 } from './DenormalizeServiceProvider';
 
-export { getMasterConnectionProvider } from './Connection/MasterConnection';
-export { getDataConnectionProvider } from './Connection/DataConnection';
-
 export function createContainer() {
   let container = Container.instance();
 
