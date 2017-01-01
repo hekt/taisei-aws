@@ -2,6 +2,3 @@ node_modules
 dist
 coverage
 resources
-bundle
-bundle.zip
-*.sqlite3

@@ -4,6 +4,11 @@ var del = require('del');
 var mocha = require('gulp-mocha');
 var istanbul = require('gulp-istanbul');
 var ts = require('gulp-typescript');
+var install = require('gulp-install');
+var webpack = require('gulp-webpack');
+var zip = require('gulp-zip');
+
+var webpackConfig = require('./webpack.config.js');
 
 var tsProject = ts.createProject('tsconfig.json');
 var buildFailed = false;
@@ -16,7 +21,54 @@ gulp.task('clean', del.bind(null, [
     'dist/tests',
 ]));
 
-gulp.task('bundle:lambda', function () {});
+/**
+ * Tasks for AWS Lambda
+ */
+
+gulp.task('clean:lambda', del.bind(null, [
+  'dist/production',
+  'dist/upload.zip',
+]));
+
+gulp.task('archive:lambda', [
+  'copy:lambda',
+  'install:lambda',
+  'before-install:lambda',
+  'bundle:lambda',
+], function () {
+  return gulp.src([
+    './dist/production/**'
+  ], {base: './dist/production'})
+    .pipe(zip('upload.zip'))
+    .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('copy:lambda', function () {
+  return gulp.src('./resources/*.sqlite3')
+    .pipe(gulp.dest('./dist/production/resources'));
+});
+
+gulp.task('install:lambda', function () {
+  return gulp.src('./package.json')
+    .pipe(gulp.dest('./dist/production'))
+    .pipe(install({production: true}));
+});
+
+gulp.task('before-install:lambda', ['install:lambda'], function () {
+  var dir = 'node-v46-linux-x64';
+  return gulp.src('./resources/' + dir + '/**')
+    .pipe(gulp.dest('./dist/production/node_modules/sqlite3/lib/binding/' + dir));
+});
+
+gulp.task('bundle:lambda', function () {
+  return gulp.src('./src/lambda.ts')
+    .pipe(webpack(webpackConfig))
+    .pipe(gulp.dest('./dist/production'));
+});
+
+/**
+ * Tasks for development
+ */
 
 gulp.task('build', function() {
   buildFailed = false;
