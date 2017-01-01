@@ -1,29 +1,24 @@
-var gulp = require('gulp');
-var gutil = require('gulp-util');
 var del = require('del');
-var mocha = require('gulp-mocha');
-var istanbul = require('gulp-istanbul');
-var ts = require('gulp-typescript');
+var request = require('request');
+var gulp = require('gulp');
+var chmod = require('gulp-chmod');
+var gunzip = require('gulp-gunzip');
 var install = require('gulp-install');
+var istanbul = require('gulp-istanbul');
+var mocha = require('gulp-mocha');
+var ts = require('gulp-typescript');
+var untar = require('gulp-untar');
+var gutil = require('gulp-util');
 var webpack = require('gulp-webpack');
 var zip = require('gulp-zip');
+var source = require('vinyl-source-stream');
 
-var webpackConfig = require('./webpack.config.js');
-
-var tsProject = ts.createProject('tsconfig.json');
-var buildFailed = false;
-var onError = function(err) {
-  buildFailed = true;
-};
-
-gulp.task('clean', del.bind(null, [
-    'dist/src',
-    'dist/tests',
-]));
 
 /**
  * Tasks for AWS Lambda
  */
+
+var webpackConfig = require('./webpack.config.js');
 
 gulp.task('clean:lambda', del.bind(null, [
   'dist/production',
@@ -66,9 +61,42 @@ gulp.task('bundle:lambda', function () {
     .pipe(gulp.dest('./dist/production'));
 });
 
+
+/**
+ * Tasks build resources
+ */
+
+
+gulp.task('clean:binary'), del.bind(null, [
+  'tmp',
+  'resources/node-v46-linux-x64',
+]);
+
+gulp.task('download:binary', ['clean:binary'], function () {
+  var baseUrl = 'https://mapbox-node-binary.s3.amazonaws.com/sqlite3/v3.1.8/';
+  var filename = 'node-v46-linux-x64.tar.gz';
+  return request(baseUrl + filename)
+    .pipe(source(filename))
+    .pipe(gunzip())
+    .pipe(untar())
+    .pipe(chmod(0o755))
+    .pipe(gulp.dest('./resources'));
+});
+
 /**
  * Tasks for development
  */
+
+var tsProject = ts.createProject('tsconfig.json');
+var buildFailed = false;
+var onError = function(err) {
+  buildFailed = true;
+};
+
+gulp.task('clean', del.bind(null, [
+    'dist/src',
+    'dist/tests',
+]));
 
 gulp.task('build', function() {
   buildFailed = false;
