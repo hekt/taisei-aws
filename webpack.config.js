@@ -1,3 +1,4 @@
+var path = require('path');
 var nodeExternals = require('webpack-node-externals');
 
 module.exports = {
@@ -10,11 +11,14 @@ module.exports = {
   ],
   entry: './src/lambda.ts',
   output: {
-    path: __dirname + '/dist/production',
+    path: path.join(__dirname, './dist/production'),
     filename: 'index.js',
     libraryTarget: 'commonjs',
   },
   resolve: {
+    root: [
+      path.join(__dirname, './dist/src')
+    ],
     extensions: ['', '.ts', '.tsx', '.js']
   },
   module: {

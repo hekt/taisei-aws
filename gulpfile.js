@@ -1,3 +1,4 @@
+var fs = require('fs');
 var del = require('del');
 var request = require('request');
 var gulp = require('gulp');
@@ -49,10 +50,20 @@ gulp.task('install:lambda', function () {
     .pipe(install({production: true}));
 });
 
-gulp.task('before-install:lambda', ['install:lambda'], function () {
-  var dir = 'node-v46-linux-x64';
-  return gulp.src('./resources/' + dir + '/**')
-    .pipe(gulp.dest('./dist/production/node_modules/sqlite3/lib/binding/' + dir));
+gulp.task('before-install:lambda', ['install:lambda'], function (done) {
+  var path = './dist/production/node_modules/sqlite3/lib/binding/node-v46-linux-x64/node_sqlite3.node';
+  try {
+    fs.statSync(path);
+    done();
+  } catch (e) {
+    var filename = 'node-v46-linux-x64.tar.gz';
+    return request('https://mapbox-node-binary.s3.amazonaws.com/sqlite3/v3.1.8/' + filename)
+      .pipe(source(filename))
+      .pipe(gunzip())
+      .pipe(untar())
+      .pipe(chmod(0o755))
+      .pipe(gulp.dest('./dist/production/node_modules/sqlite3/lib/binding'));
+  }
 });
 
 gulp.task('bundle:lambda', function () {
@@ -61,27 +72,6 @@ gulp.task('bundle:lambda', function () {
     .pipe(gulp.dest('./dist/production'));
 });
 
-
-/**
- * Tasks build resources
- */
-
-
-gulp.task('clean:binary'), del.bind(null, [
-  'tmp',
-  'resources/node-v46-linux-x64',
-]);
-
-gulp.task('download:binary', ['clean:binary'], function () {
-  var baseUrl = 'https://mapbox-node-binary.s3.amazonaws.com/sqlite3/v3.1.8/';
-  var filename = 'node-v46-linux-x64.tar.gz';
-  return request(baseUrl + filename)
-    .pipe(source(filename))
-    .pipe(gunzip())
-    .pipe(untar())
-    .pipe(chmod(0o755))
-    .pipe(gulp.dest('./resources'));
-});
 
 /**
  * Tasks for development

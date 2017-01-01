@@ -5,7 +5,8 @@
   "scripts": {
     "build": "NODE_PATH=dist/src gulp clean && NODE_PATH=dist/src gulp build",
     "test": "NODE_PATH=dist/src istanbul cover --report text _mocha -- dist/tests/**/*.test.js",
-    "watch": "NODE_PATH=dist/src gulp clean && NODE_PATH=dist/src gulp watch"
+    "watch": "NODE_PATH=dist/src gulp clean && NODE_PATH=dist/src gulp watch",
+    "archive": "NODE_PATH=dist/src gulp archive:lambda"
   },
   "author": "hektorg@gmail.com",
   "license": "MIT",
