@@ -5,7 +5,7 @@ import { getDataConnectionOptions } from 'applications/Connection';
 import UrlParametersConverter from 'applications/Converter/UrlParametersConverter';
 import DenormalizedDataConverter from 'applications/Converter/DenormalizedDataConverter';
 import DenormalizedData from 'domains/Denormalized/DenormalizedData';
-import DenormalizedDataRepository from 'domains/Denormalized/DenormalizedDataRepository';
+import DenormalizedDataFetchService from 'domains/Denormalized/DenormalizedDataFetchService';
 
 class App extends Application<{[key: string]: string}, Object[]> {
   protected connectionOptions() {
@@ -18,13 +18,13 @@ class App extends Application<{[key: string]: string}, Object[]> {
     container: Container,
     query?: {[key: string]: string}
   ): Promise<Object[]> {
-    const denormalizedDataRepository = container
-      .get<DenormalizedDataRepository>('denormalizedDataRepository');
+    const fetchService = container
+      .get<DenormalizedDataFetchService>('denormalizedDataFetchService');
 
     const queryCollection = UrlParametersConverter.toQueryCollection(query!);
 
-    const data: DenormalizedData[] = await denormalizedDataRepository
-      .getByQueryCollection(queryCollection);
+    const data: DenormalizedData[] = await fetchService
+      .fetchByQueryCollection(queryCollection);
 
     return data.map(DenormalizedDataConverter.toJson);
   }

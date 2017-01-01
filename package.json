@@ -43,6 +43,7 @@
     "aws-sdk": "^2.7.20",
     "es6-promise": "^4.0.5",
     "fs": "0.0.1-security",
+    "lodash": "^4.17.4",
     "reflect-metadata": "^0.1.8",
     "sqlite3": "^3.1.8",
     "typeorm": "0.0.5"

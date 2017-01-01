@@ -3,7 +3,8 @@ import {
   AbilityRepositoryProvider
 } from 'domains/Ability/AbilityProvider';
 import {
-  DenormalizedDataRepositoryProvider
+  DenormalizedDataRepositoryProvider,
+  DenormalizedDataFetchServiceProvider,
 } from 'domains/Denormalized/DenormalizedProvider';
 import {
   PokemonRepositoryProvider
@@ -25,6 +26,9 @@ export function createContainer() {
     new PokemonRepositoryProvider(),
     new TypeEfficacyRepositoryProvider(),
     new DenormalizedDataRepositoryProvider(),
+
+    // domain services
+    new DenormalizedDataFetchServiceProvider(),
 
     // factories
     new CorrectorFactoryProvider(),
