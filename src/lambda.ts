@@ -2,8 +2,8 @@ import Container from 'infrastructure/Container';
 import { Where } from 'infrastructure/Query';
 import Application from 'applications/Application';
 import { getDataConnectionOptions } from 'applications/Connection';
-import QueryConverter from 'applications/QueryConverter';
-import ResponseFormatter from 'applications/ResponseFormatter';
+import UrlParametersConverter from 'applications/Converter/UrlParametersConverter';
+import DenormalizedDataConverter from 'applications/Converter/DenormalizedDataConverter';
 import DenormalizedData from 'domains/Denormalized/DenormalizedData';
 import DenormalizedDataRepository from 'domains/Denormalized/DenormalizedDataRepository';
 
@@ -18,25 +18,22 @@ class App extends Application<{[key: string]: string}, Object[]> {
     container: Container,
     query?: {[key: string]: string}
   ): Promise<Object[]> {
-    let denormalizedDataRepository = container
+    const denormalizedDataRepository = container
       .get<DenormalizedDataRepository>('denormalizedDataRepository');
 
-    let wheres: Where[] = [];
-    if (query) {
-      wheres = QueryConverter.urlParamsToWheres(query);
-    }
+    const queryCollection = UrlParametersConverter.toQueryCollection(query!);
 
-    let data: DenormalizedData[] = await denormalizedDataRepository
-      .getByWheres(wheres);
+    const data: DenormalizedData[] = await denormalizedDataRepository
+      .getByQueryCollection(queryCollection);
 
-    return data.map(ResponseFormatter.format);
+    return data.map(DenormalizedDataConverter.toJson);
   }
 }
 
 let app;
 
 export function handler(event, context, callback) {
-  let done = (err, res) => callback(null, {
+  const done = (err, res) => callback(null, {
     statusCode: err ? '400' : '200',
     body: err ? err.message : JSON.stringify(res),
     headers: {
@@ -50,6 +47,6 @@ export function handler(event, context, callback) {
     .then((data) => {
       done(null, data);
     }).catch((err) => {
- done(err.stack, null);
+      done(err, null);
     });
 }

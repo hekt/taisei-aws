@@ -2,7 +2,7 @@ import Ability from 'domains/Ability/Ability';
 import Pokemon from 'domains/Pokemon/Pokemon';
 import Type from 'domains/Type/Type';
 
-class PokemonCsvFormatter {
+class PokemonCsvReader {
   public static read(row: string): Pokemon {
     let values = row.split(',');
 
@@ -37,4 +37,4 @@ class PokemonCsvFormatter {
   }
 }
 
-export default PokemonCsvFormatter;
+export default PokemonCsvReader;

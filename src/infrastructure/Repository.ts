@@ -23,7 +23,10 @@ abstract class Repository<T> {
   }
 
   public async transaction(
-    callback: (repository: Repository<T>, base: BaseRepository<Entity<T>>) => Promise<any> | any
+    callback: (
+      repository: Repository<T>,
+      baseRepository: BaseRepository<Entity<T>>
+    ) => Promise<any> | any
   ): Promise<any> {
     return this.getRepository()
       .transaction(callback.bind(null, this));

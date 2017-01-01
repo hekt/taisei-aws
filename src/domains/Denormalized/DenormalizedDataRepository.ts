@@ -1,5 +1,5 @@
 import Repository from 'infrastructure/Repository';
-import { Where } from 'infrastructure/Query';
+import { QueryCollection } from 'infrastructure/Query';
 import DenormalizedData from 'domains/Denormalized/DenormalizedData';
 import DenormalizedDataEntity from 'domains/Denormalized/DenormalizedDataEntity';
 
@@ -16,24 +16,13 @@ class DenormalizedDataRepository extends Repository<DenormalizedData> {
     return (new DenormalizedDataEntity()).setValuesFromModel(model);
   }
 
-  public async getByWheres(wheres: Where[]): Promise<DenormalizedData[]> {
-    let query = this.getRepository()
-      .createQueryBuilder('denormalized_data');
+  public async getByQueryCollection(
+    collection: QueryCollection
+  ): Promise<DenormalizedData[]> {
+    let query = this.getRepository().createQueryBuilder('denormalized_data');
+    query = collection.build(query);
 
-    let firstWhere = true;
-    for (let w of wheres) {
-      if (firstWhere) {
-        query = query.where(w['query'], w['params']);
-        firstWhere = false;
-      } else {
-        query = query.andWhere(w['query'], w['params']);
-      }
-    }
-
-    let entities = await query
-      // .orderBy('ndex')
-      // .addOrderBy('formName')
-      .getMany();
+    let entities = await query.getMany();
 
     return entities.map(this.inflate);
   }

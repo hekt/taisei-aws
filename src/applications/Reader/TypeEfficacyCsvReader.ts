@@ -1,7 +1,7 @@
 import Type from 'domains/Type/Type';
 import TypeEfficacy from 'domains/Efficacy/TypeEfficacy';
 
-class TypeEfficacyCsvFormatter {
+class TypeEfficacyCsvReader {
   public static read(row: string): TypeEfficacy {
     let values = row.split(',');
 
@@ -17,4 +17,4 @@ class TypeEfficacyCsvFormatter {
   }
 }
 
-export default TypeEfficacyCsvFormatter;
+export default TypeEfficacyCsvReader;

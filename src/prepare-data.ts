@@ -17,14 +17,14 @@ class App extends Application<void, void> {
   }
 
   protected async main(container: Container): Promise<void> {
-    let pokemonRepository = container
+    const pokemonRepository = container
       .get<PokemonRepository>('pokemonRepository');
-    let pokemons = await pokemonRepository.allWithRelations();
+    const pokemons = await pokemonRepository.allWithRelations();
 
-    let denormalizedDataRepository = container
+    const denormalizedDataRepository = container
       .get<DenormalizedDataRepository>('denormalizedDataRepository');
 
-    let denormalizeService = container
+    const denormalizeService = container
       .get<DenormalizeService>('denormalizeService');
 
     let denormalized;
@@ -39,7 +39,7 @@ class App extends Application<void, void> {
   }
 }
 
-let app = new App();
+const app = new App();
 app.run().then(() => {
   console.log('success');
 }).catch((err) => {
