@@ -4,10 +4,10 @@ import {
   Column,
   PrimaryGeneratedColumn
 } from 'typeorm';
-import Type from '../Type/Type';
-import TypeValue from '../Type/TypeValue';
-import Entity from '../../infrastructure/Entity';
-import DenormalizedData from './DenormalizedData';
+import Type from 'domains/Type/Type';
+import TypeValue from 'domains/Type/TypeValue';
+import Entity from 'infrastructure/Entity';
+import DenormalizedData from 'domains/Denormalized/DenormalizedData';
 
 @Table('denormalized_data')
 class DenormalizedDataEntity implements Entity<DenormalizedData> {

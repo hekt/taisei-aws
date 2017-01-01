@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 import { Table, Column, PrimaryColumn } from 'typeorm';
-import Entity from '../../infrastructure/Entity';
-import Type from '../Type/Type';
-import TypeValue from '../Type/TypeValue';
-import TypeEfficacy from './TypeEfficacy';
+import Entity from 'infrastructure/Entity';
+import Type from 'domains/Type/Type';
+import TypeValue from 'domains/Type/TypeValue';
+import TypeEfficacy from 'domains/Efficacy/TypeEfficacy';
 
 @Table('type_efficacy')
 class TypeEfficacyEntity extends Entity<TypeEfficacy> {

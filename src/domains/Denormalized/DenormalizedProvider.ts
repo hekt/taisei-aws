@@ -1,7 +1,7 @@
 import { Connection } from 'typeorm';
-import Container from '../../infrastructure/Container';
-import ServiceProvider from '../../infrastructure/ServiceProvider';
-import DenormalizedDataRepository from './DenormalizedDataRepository';
+import Container from 'infrastructure/Container';
+import ServiceProvider from 'infrastructure/ServiceProvider';
+import DenormalizedDataRepository from 'domains/Denormalized/DenormalizedDataRepository';
 
 export class DenormalizedDataRepositoryProvider extends ServiceProvider<DenormalizedDataRepository> {
   public getIdentifier(): string {

@@ -1,12 +1,12 @@
 import { ConnectionOptions } from 'typeorm';
 
 // master
-import AbilityEntity from '../domains/Ability/AbilityEntity';
-import PokemonEntity from '../domains/Pokemon/PokemonEntity';
-import TypeEfficacyEntity from '../domains/Efficacy/TypeEfficacyEntity';
+import AbilityEntity from 'domains/Ability/AbilityEntity';
+import PokemonEntity from 'domains/Pokemon/PokemonEntity';
+import TypeEfficacyEntity from 'domains/Efficacy/TypeEfficacyEntity';
 
 // data
-import DenormalizedDataEntity from '../domains/Denormalized/DenormalizedDataEntity';
+import DenormalizedDataEntity from 'domains/Denormalized/DenormalizedDataEntity';
 
 export function getMasterConnectionOptions(
   autoSchemaSync: boolean = false

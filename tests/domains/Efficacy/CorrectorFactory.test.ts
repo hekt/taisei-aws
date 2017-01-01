@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 import { expect } from 'chai';
 import * as TypeMoq from 'typemoq';
-import { toPromise } from '../../TestUtils';
-import Ability from '../../../src/domains/Ability/Ability';
-import Type from '../../../src/domains/Type/Type';
-import TypeEfficacy from '../../../src/domains/Efficacy/TypeEfficacy';
-import TypeEfficacyRepository from '../../../src/domains/Efficacy/TypeEfficacyRepository';
+import { toPromise } from 'utils/TestUtils';
+import Ability from 'domains/Ability/Ability';
+import Type from 'domains/Type/Type';
+import TypeEfficacy from 'domains/Efficacy/TypeEfficacy';
+import TypeEfficacyRepository from 'domains/Efficacy/TypeEfficacyRepository';
 import {
   CorrectorInterface,
   PassCorrector,
@@ -13,8 +13,8 @@ import {
   MultipleCorrector,
   MoreOrEqualCorrector,
   LessCorrector
-} from '../../../src/domains/Efficacy/Corrector';
-import CorrectorFactory from '../../../src/domains/Efficacy/CorrectorFactory';
+} from 'domains/Efficacy/Corrector';
+import CorrectorFactory from 'domains/Efficacy/CorrectorFactory';
 
 describe('CorrectorFactory', () => {
   let mTypeEfficacyRepository: TypeMoq.IMock<TypeEfficacyRepository>;

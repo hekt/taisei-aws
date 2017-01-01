@@ -1,4 +1,4 @@
-import DenormalizedData from '../domains/Denormalized/DenormalizedData';
+import DenormalizedData from 'domains/Denormalized/DenormalizedData';
 
 class ResponseFormatter {
   public static format(data: DenormalizedData): Object {

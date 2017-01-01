@@ -1,4 +1,4 @@
-import TypeValue from './TypeValue';
+import TypeValue from 'domains/Type/TypeValue';
 
 export default class Type {
   /**

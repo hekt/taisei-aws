@@ -1,11 +1,11 @@
-import Container from './infrastructure/Container';
-import { Where } from './infrastructure/Query';
-import Application from './applications/Application';
-import { getDataConnectionOptions } from './applications/Connection';
-import QueryConverter from './applications/QueryConverter';
-import ResponseFormatter from './applications/ResponseFormatter';
-import DenormalizedData from './domains/Denormalized/DenormalizedData';
-import DenormalizedDataRepository from './domains/Denormalized/DenormalizedDataRepository';
+import Container from 'infrastructure/Container';
+import { Where } from 'infrastructure/Query';
+import Application from 'applications/Application';
+import { getDataConnectionOptions } from 'applications/Connection';
+import QueryConverter from 'applications/QueryConverter';
+import ResponseFormatter from 'applications/ResponseFormatter';
+import DenormalizedData from 'domains/Denormalized/DenormalizedData';
+import DenormalizedDataRepository from 'domains/Denormalized/DenormalizedDataRepository';
 
 class App extends Application<{[key: string]: string}, Object[]> {
   protected connectionOptions() {

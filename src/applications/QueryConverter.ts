@@ -1,4 +1,4 @@
-import { Where } from '../infrastructure/Query';
+import { Where } from 'infrastructure/Query';
 
 let available_keys = [
   'finalForm',

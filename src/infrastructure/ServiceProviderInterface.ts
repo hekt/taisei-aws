@@ -1,4 +1,4 @@
-import Container from './Container';
+import Container from 'infrastructure/Container';
 
 interface ServiceProviderInterface {
   getIdentifier(): string;

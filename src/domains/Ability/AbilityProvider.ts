@@ -1,7 +1,7 @@
 import { Connection } from 'typeorm';
-import Container from '../../infrastructure/Container';
-import ServiceProvider from '../../infrastructure/ServiceProvider';
-import AbilityRepository from './AbilityRepository';
+import Container from 'infrastructure/Container';
+import ServiceProvider from 'infrastructure/ServiceProvider';
+import AbilityRepository from 'domains/Ability/AbilityRepository';
 
 export class AbilityRepositoryProvider extends ServiceProvider<AbilityRepository> {
   public getIdentifier(): string {

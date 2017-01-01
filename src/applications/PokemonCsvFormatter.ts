@@ -1,6 +1,6 @@
-import Ability from '../domains/Ability/Ability';
-import Pokemon from '../domains/Pokemon/Pokemon';
-import Type from '../domains/Type/Type';
+import Ability from 'domains/Ability/Ability';
+import Pokemon from 'domains/Pokemon/Pokemon';
+import Type from 'domains/Type/Type';
 
 class PokemonCsvFormatter {
   public static read(row: string): Pokemon {

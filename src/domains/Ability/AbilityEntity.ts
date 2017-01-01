@@ -5,8 +5,8 @@ import {
   PrimaryColumn,
   ManyToMany
 } from 'typeorm';
-import Entity from '../../infrastructure/Entity';
-import Ability from './Ability';
+import Entity from 'infrastructure/Entity';
+import Ability from 'domains/Ability/Ability';
 
 @Table('ability')
 class AbilityEntity extends Entity<Ability> {

@@ -1,5 +1,5 @@
 import { Connection, Repository as BaseRepository } from 'typeorm';
-import Entity from './Entity';
+import Entity from 'infrastructure/Entity';
 
 abstract class Repository<T> {
   public constructor(

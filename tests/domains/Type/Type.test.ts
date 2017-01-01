@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import Type from '../../../src/domains/Type/Type';
-import TypeValue from '../../../src/domains/Type/TypeValue';
+import Type from 'domains/Type/Type';
+import TypeValue from 'domains/Type/TypeValue';
 
 describe('Type', () => {
 

@@ -1,6 +1,6 @@
-import Repository from '../../infrastructure/Repository';
-import Pokemon from './Pokemon';
-import PokemonEntity from './PokemonEntity';
+import Repository from  'infrastructure/Repository';
+import Pokemon from 'domains/Pokemon/Pokemon';
+import PokemonEntity from 'domains/Pokemon/PokemonEntity';
 
 class PokemonRepository extends Repository<Pokemon> {
   protected getRepository() {

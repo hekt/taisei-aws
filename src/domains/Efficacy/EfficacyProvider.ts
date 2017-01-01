@@ -1,8 +1,8 @@
 import { Connection } from 'typeorm';
-import Container from '../../infrastructure/Container';
-import ServiceProvider from '../../infrastructure/ServiceProvider';
-import TypeEfficacyRepository from './TypeEfficacyRepository';
-import CorrectorFactory from './CorrectorFactory';
+import Container from 'infrastructure/Container';
+import ServiceProvider from 'infrastructure/ServiceProvider';
+import TypeEfficacyRepository from 'domains/Efficacy/TypeEfficacyRepository';
+import CorrectorFactory from 'domains/Efficacy/CorrectorFactory';
 
 export class TypeEfficacyRepositoryProvider extends ServiceProvider<TypeEfficacyRepository> {
   public getIdentifier(): string {

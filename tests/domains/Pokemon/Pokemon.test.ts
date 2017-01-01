@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import Pokemon from '../../../src/domains/Pokemon/Pokemon';
-import Type from '../../../src/domains/Type/Type';
+import Pokemon from 'domains/Pokemon/Pokemon';
+import Type from 'domains/Type/Type';
 
 describe('Pokemon', () => {
 

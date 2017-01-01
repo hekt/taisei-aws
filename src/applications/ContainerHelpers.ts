@@ -1,20 +1,20 @@
-import Container from '../infrastructure/Container';
+import Container from 'infrastructure/Container';
 import {
   AbilityRepositoryProvider
-} from '../domains/Ability/AbilityProvider';
+} from 'domains/Ability/AbilityProvider';
 import {
   DenormalizedDataRepositoryProvider
-} from '../domains/Denormalized/DenormalizedProvider';
+} from 'domains/Denormalized/DenormalizedProvider';
 import {
   PokemonRepositoryProvider
-} from '../domains/Pokemon/PokemonProvider';
+} from 'domains/Pokemon/PokemonProvider';
 import {
   TypeEfficacyRepositoryProvider,
   CorrectorFactoryProvider
-} from '../domains/Efficacy/EfficacyProvider';
+} from 'domains/Efficacy/EfficacyProvider';
 import {
   DenormalizeServiceProvider
-} from './DenormalizeServiceProvider';
+} from 'applications/DenormalizeServiceProvider';
 
 export function createContainer() {
   let container = Container.instance();

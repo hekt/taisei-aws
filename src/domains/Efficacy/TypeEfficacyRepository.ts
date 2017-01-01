@@ -1,7 +1,7 @@
-import Repository from '../../infrastructure/Repository';
-import Type from '../Type/Type';
-import TypeEfficacy from './TypeEfficacy';
-import TypeEfficacyEntity from './TypeEfficacyEntity';
+import Repository from 'infrastructure/Repository';
+import Type from 'domains/Type/Type';
+import TypeEfficacy from 'domains/Efficacy/TypeEfficacy';
+import TypeEfficacyEntity from 'domains/Efficacy/TypeEfficacyEntity';
 
 class TypeEfficacyRepository extends Repository<TypeEfficacy> {
   protected getRepository() {

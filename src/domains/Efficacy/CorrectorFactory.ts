@@ -1,8 +1,8 @@
-import Ability from '../Ability/Ability';
-import Pokemon from '../Pokemon/Pokemon';
-import Type from '../Type/Type';
-import TypeEfficacy from './TypeEfficacy';
-import TypeEfficacyRepository from './TypeEfficacyRepository';
+import Ability from 'domains/Ability/Ability';
+import Pokemon from 'domains/Pokemon/Pokemon';
+import Type from 'domains/Type/Type';
+import TypeEfficacy from 'domains/Efficacy/TypeEfficacy';
+import TypeEfficacyRepository from 'domains/Efficacy/TypeEfficacyRepository';
 import {
   CorrectorInterface,
   PassCorrector,
@@ -10,7 +10,7 @@ import {
   MultipleCorrector,
   MoreOrEqualCorrector,
   LessCorrector
-} from './Corrector';
+} from 'domains/Efficacy/Corrector';
 
 class CorrectorFactory {
   public constructor(

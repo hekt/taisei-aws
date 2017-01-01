@@ -1,5 +1,5 @@
-import Type from '../domains/Type/Type';
-import TypeEfficacy from '../domains/Efficacy/TypeEfficacy';
+import Type from 'domains/Type/Type';
+import TypeEfficacy from 'domains/Efficacy/TypeEfficacy';
 
 class TypeEfficacyCsvFormatter {
   public static read(row: string): TypeEfficacy {

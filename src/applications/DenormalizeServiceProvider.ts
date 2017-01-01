@@ -1,7 +1,7 @@
-import Container from '../infrastructure/Container';
-import ServiceProvider from '../infrastructure/ServiceProvider';
-import CorrectorFactory from '../domains/Efficacy/CorrectorFactory';
-import DenormalizeService from './DenormalizeService';
+import Container from 'infrastructure/Container';
+import ServiceProvider from 'infrastructure/ServiceProvider';
+import CorrectorFactory from 'domains/Efficacy/CorrectorFactory';
+import DenormalizeService from 'applications/DenormalizeService';
 
 export class DenormalizeServiceProvider extends ServiceProvider<DenormalizeService> {
   public getIdentifier(): string {

@@ -1,5 +1,5 @@
 import ServiceProviderInterface from './ServiceProviderInterface';
-import Container from './Container';
+import Container from 'infrastructure/Container';
 
 abstract class ServiceProvider<T> implements ServiceProviderInterface {
   private resolvedInstance: T | null = null;

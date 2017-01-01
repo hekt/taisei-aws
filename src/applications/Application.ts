@@ -4,9 +4,9 @@ import {
   Connection,
   ConnectionOptions
 } from 'typeorm';
-import Container from '../infrastructure/Container';
-import ConnectionProvider from '../infrastructure/ConnectionProvider';
-import { createContainer } from './ContainerHelpers';
+import Container from 'infrastructure/Container';
+import ConnectionProvider from 'infrastructure/ConnectionProvider';
+import { createContainer } from 'applications/ContainerHelpers';
 
 abstract class Application<A,R> {
   protected connectionManager: ConnectionManager;

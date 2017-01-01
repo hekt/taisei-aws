@@ -1,7 +1,7 @@
-import Repository from '../../infrastructure/Repository';
-import { Where } from '../../infrastructure/Query';
-import DenormalizedData from './DenormalizedData';
-import DenormalizedDataEntity from './DenormalizedDataEntity';
+import Repository from 'infrastructure/Repository';
+import { Where } from 'infrastructure/Query';
+import DenormalizedData from 'domains/Denormalized/DenormalizedData';
+import DenormalizedDataEntity from 'domains/Denormalized/DenormalizedDataEntity';
 
 class DenormalizedDataRepository extends Repository<DenormalizedData> {
   protected getRepository() {

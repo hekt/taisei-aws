@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Ability from '../../../src/domains/Ability/Ability';
+import Ability from 'domains/Ability/Ability';
 
 describe('Ability', () => {
 

@@ -1,6 +1,6 @@
-import Repository from '../../infrastructure/Repository';
-import Ability from './Ability';
-import AbilityEntity from './AbilityEntity';
+import Repository from 'infrastructure/Repository';
+import Ability from 'domains/Ability/Ability';
+import AbilityEntity from 'domains/Ability/AbilityEntity';
 
 class AbilityRepository extends Repository<Ability> {
   protected getRepository() {

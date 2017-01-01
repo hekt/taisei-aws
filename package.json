@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Pokemon taisei kensaku Web Api for AWS Lambda",
   "scripts": {
-    "build": "gulp clean && gulp build",
-    "test": "istanbul cover --report text _mocha -- dist/tests/**/*.test.js",
-    "watch": "gulp clean && gulp watch"
+    "build": "NODE_PATH=dist/src gulp clean && NODE_PATH=dist/src gulp build",
+    "test": "NODE_PATH=dist/src istanbul cover --report text _mocha -- dist/tests/**/*.test.js",
+    "watch": "NODE_PATH=dist/src gulp clean && NODE_PATH=dist/src gulp watch"
   },
   "author": "hektorg@gmail.com",
   "license": "MIT",

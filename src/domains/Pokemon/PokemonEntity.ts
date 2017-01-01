@@ -5,11 +5,11 @@ import {
   ManyToMany,
   JoinTable
 } from 'typeorm';
-import Entity from '../../infrastructure/Entity';
-import AbilityEntity from '../Ability/AbilityEntity';
-import Type from '../Type/Type';
-import TypeValue from '../Type/TypeValue';
-import Pokemon from './Pokemon';
+import Entity from 'infrastructure/Entity';
+import AbilityEntity from 'domains/Ability/AbilityEntity';
+import Type from 'domains/Type/Type';
+import TypeValue from 'domains/Type/TypeValue';
+import Pokemon from 'domains/Pokemon/Pokemon';
 
 @Table('pokemon')
 class PokemonEntity extends Entity<Pokemon> {

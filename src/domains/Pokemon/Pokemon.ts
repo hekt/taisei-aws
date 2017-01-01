@@ -1,5 +1,5 @@
-import Type from "../Type/Type";
-import Ability from '../Ability/Ability';
+import Type from "domains/Type/Type";
+import Ability from 'domains/Ability/Ability';
 
 export default class Pokemon {
   constructor(

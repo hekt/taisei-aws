@@ -1,6 +1,6 @@
 import { Connection } from 'typeorm';
-import ServiceProvider from './ServiceProvider';
-import Container from './Container';
+import ServiceProvider from 'infrastructure/ServiceProvider';
+import Container from 'infrastructure/Container';
 
 class ConnectionProvider extends ServiceProvider<Connection> {
   public constructor(

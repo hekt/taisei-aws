@@ -1,4 +1,4 @@
-import Type from '../Type/Type';
+import Type from 'domains/Type/Type';
 
 class DenormalizedData {
   public constructor(

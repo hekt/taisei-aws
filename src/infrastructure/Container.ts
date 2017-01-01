@@ -1,4 +1,4 @@
-import ServiceProviderInterface from './ServiceProviderInterface';
+import ServiceProviderInterface from 'infrastructure/ServiceProviderInterface';
 
 export default class Container {
   private static sharedInstance: Container | null = null;

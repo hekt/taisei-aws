@@ -1,9 +1,9 @@
-import Ability from '../domains/Ability/Ability';
-import DenormalizedData from '../domains/Denormalized/DenormalizedData';
-import Type from '../domains/Type/Type';
-import Pokemon from '../domains/Pokemon/Pokemon';
-import { CorrectorInterface } from '../domains/Efficacy/Corrector';
-import CorrectorFactory from '../domains/Efficacy/CorrectorFactory';
+import Ability from 'domains/Ability/Ability';
+import DenormalizedData from 'domains/Denormalized/DenormalizedData';
+import Type from 'domains/Type/Type';
+import Pokemon from 'domains/Pokemon/Pokemon';
+import { CorrectorInterface } from 'domains/Efficacy/Corrector';
+import CorrectorFactory from 'domains/Efficacy/CorrectorFactory';
 
 class DenormalizeService {
   public constructor(

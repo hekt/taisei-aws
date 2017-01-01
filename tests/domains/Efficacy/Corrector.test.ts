@@ -1,12 +1,12 @@
 import { expect } from 'chai';
-import Type from '../../../src/domains/Type/Type';
+import Type from 'domains/Type/Type';
 import {
   PassCorrector,
   SimpleCorrector,
   MultipleCorrector,
   MoreOrEqualCorrector,
   LessCorrector
-} from '../../../src/domains/Efficacy/Corrector';
+} from 'domains/Efficacy/Corrector';
 
 describe('PassCorrector', () => {
 

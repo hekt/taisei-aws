@@ -1,12 +1,12 @@
-import Container from './infrastructure/Container';
+import Container from 'infrastructure/Container';
 import {
   getMasterConnectionOptions,
   getDataConnectionOptions
-} from './applications/Connection';
-import Application from './applications/Application';
-import PokemonRepository from './domains/Pokemon/PokemonRepository';
-import DenormalizedDataRepository from './domains/Denormalized/DenormalizedDataRepository';
-import DenormalizeService from './applications/DenormalizeService';
+} from 'applications/Connection';
+import Application from 'applications/Application';
+import PokemonRepository from 'domains/Pokemon/PokemonRepository';
+import DenormalizedDataRepository from 'domains/Denormalized/DenormalizedDataRepository';
+import DenormalizeService from 'applications/DenormalizeService';
 
 class App extends Application<void, void> {
   protected connectionOptions() {
