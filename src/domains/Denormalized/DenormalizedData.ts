@@ -1,6 +1,7 @@
 import Type from 'domains/Type/Type';
+import DenormalizedDataInterface from 'domains/Denormalized/DenormalizedDataInterface';
 
-class DenormalizedData {
+class DenormalizedData implements DenormalizedDataInterface {
   public constructor(
     public readonly pokemonId: number,
     public readonly ndex: number,

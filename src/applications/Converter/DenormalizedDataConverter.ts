@@ -1,11 +1,11 @@
-import DenormalizedData from 'domains/Denormalized/DenormalizedData';
+import DenormalizedDataInterface from 'domains/Denormalized/DenormalizedDataInterface';
 
 function capitalize(s: string): string {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 class DenormalizedDataConverter {
-  public static toJson(data: DenormalizedData): Object {
+  public static toJson(data: DenormalizedDataInterface): Object {
     return {
       'number': data.ndex,
       'name': data.fullName(),

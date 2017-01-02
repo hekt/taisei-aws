@@ -7,6 +7,7 @@ import {
 import Type from 'domains/Type/Type';
 import TypeValue from 'domains/Type/TypeValue';
 import Entity from 'infrastructure/Entity';
+import CompressedData from 'domains/Denormalized/CompressedData';
 import DenormalizedData from 'domains/Denormalized/DenormalizedData';
 
 @Table('denormalized_data')

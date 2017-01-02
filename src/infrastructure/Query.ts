@@ -15,17 +15,10 @@ export class QueryCollection {
   }
 
   public build<T>(builder: QueryBuilder<T>): QueryBuilder<T> {
-    let firstWhere = true;
-    for (let item of this.items) {
-      if (firstWhere) {
-        builder = builder.where(item.query, item.params);
-        firstWhere = false;
-      } else {
-        builder = builder.andWhere(item.query, item.params);
-      }
-    }
-
-    return builder;
+    return this.items.reduce(
+      (acc, item) => acc.andWhere(item.query, item.params),
+      builder
+    );
   }
 }
 

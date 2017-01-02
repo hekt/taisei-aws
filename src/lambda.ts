@@ -23,8 +23,8 @@ class App extends Application<{[key: string]: string}, Object[]> {
 
     const queryCollection = UrlParametersConverter.toQueryCollection(query!);
 
-    const data: DenormalizedData[] = await fetchService
-      .fetchByQueryCollection(queryCollection);
+    const data = await fetchService
+      .fetchAsCompressedByQueryCollection(queryCollection);
 
     return data.map(DenormalizedDataConverter.toJson);
   }
