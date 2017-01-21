@@ -22,7 +22,8 @@ var source = require('vinyl-source-stream');
 var webpackConfig = require('./webpack.config.js');
 
 gulp.task('clean:lambda', del.bind(null, [
-  'dist/production',
+  'dist/production/index.js',
+  'dist/production/resources',
   'dist/upload.zip',
 ]));
 
