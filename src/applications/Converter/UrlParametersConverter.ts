@@ -16,6 +16,11 @@ class UrlParametersConverter {
       collection.add(new Where('canEvolve', '=', '0'));
     }
 
+    // 格闘だけなんかおかしかった
+    if (params['fighting']) {
+      params['fight'] = params['fighting'];
+    }
+
     for (let key of keys) {
       if (!params[key]) {
         continue;
