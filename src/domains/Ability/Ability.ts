@@ -16,6 +16,9 @@ export default class Ability {
     case 'たいねつ':
       name = 'heatproof';
       break;
+    case 'すいほう':
+      name = 'water_bubble';
+      break;
     case 'もらいび':
       name = 'flash_fire';
       break;
@@ -57,6 +60,9 @@ export default class Ability {
       break;
     case 'ふしぎなまもり':
       name = 'wonder_guard';
+      break;
+    case 'もふもふ':
+      name = 'fluffy';
       break;
     default:
       throw new Error('undefined logical name: ' + logicalName);

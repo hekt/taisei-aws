@@ -54,6 +54,7 @@ class CorrectorFactory {
   ): CorrectorInterface {
     switch (ability.name) {
     case 'heatproof':
+    case 'water_bubble':
       return new SimpleCorrector(Type.ofFire(), 0.5);
     case 'flash_fire':
       return new SimpleCorrector(Type.ofFire(), 0.0);
@@ -68,6 +69,8 @@ class CorrectorFactory {
       return new SimpleCorrector(Type.ofElectric(), 0.0);
     case 'levitate':
       return new SimpleCorrector(Type.ofGround(), 0.0);
+    case 'fluffy':
+      return new SimpleCorrector(Type.ofFire(), 2.0);
     case 'thick_fat':
       return new MultipleCorrector([
         new SimpleCorrector(Type.ofFire(), 0.5),
