@@ -35,7 +35,7 @@ export default class Ability {
       name = 'bolt_absorb';
       break;
     case 'ひらいしん':
-      name = 'lightining_lod';
+      name = 'lightning_lod';
       break;
     case 'でんきエンジン':
       name = 'motor_drive';
